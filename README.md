@@ -7,7 +7,7 @@
 |  #  | Lecture                    | Complete |
 | :-: | -------------------------- | :------: |
 |  1  | ...And so It Begins        |    ✅    |
-|  2  | Either You Die a Hero...   |          |
+|  2  | Either You Die a Hero...   |    ✅    |
 |  3  | Catamorphic                |          |
 |  4  | Real Classy                |          |
 |  5  | You Need String for a Knot |          |
