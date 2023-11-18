@@ -20,6 +20,7 @@ import Mooc.Todo
 ------------------------------------------------------------------------------
 -- Ex 1: define variables one and two. They should have type Int and
 -- values 1 and 2, respectively.
+
 one :: Int
 one = 1
 
@@ -31,7 +32,7 @@ two = 2
 -- should take one argument and return it multiplied by two.
 
 double :: Integer -> Integer
-double x = x * 2
+double x = 2 * x
 
 ------------------------------------------------------------------------------
 -- Ex 3: define the function quadruple that uses the function double
@@ -56,7 +57,7 @@ quadruple x = double (double x)
 --   distance 1 1 4 5  ==>  5.0
 
 distance :: Double -> Double -> Double -> Double -> Double
-distance x1 x2 y1 y2 = sqrt (((x1 - y1) ** 2) + (x2 - y2) ** 2)
+distance x1 y1 x2 y2 = sqrt ((x1 - x2) ^ 2 + (y1 - y2) ^ 2)
 
 ------------------------------------------------------------------------------
 -- Ex 5: define the function eeny that returns "eeny" for even inputs
@@ -88,15 +89,13 @@ checkPassword password =
 -- in grams, and returns the cost in credits.
 
 postagePrice :: Int -> Int
-postagePrice packageWeight =
-  if packageWeight <= 500
+postagePrice weight =
+  if weight <= 500
     then 250
     else
-      if packageWeight <= 5000
-        then 300 + packageWeight
-        else 6000
-
--- hlint suggests refactor "use guards" which are covered in the next lecture
+      if weight > 5000
+        then 6000
+        else 300 + weight
 
 ------------------------------------------------------------------------------
 -- Ex 8: define a function isZero that returns True if it is given an
@@ -116,20 +115,16 @@ isZero _ = False
 -- computes the sum 1+2+...+n
 
 sumTo :: Integer -> Integer
-sumTo n =
-  if n == 0
-    then n
-    else n + sumTo (n - 1)
+sumTo 0 = 0
+sumTo n = n + sumTo (n - 1)
 
 ------------------------------------------------------------------------------
 -- Ex 10: power n k should compute n to the power k (i.e. n^k)
 -- Use recursion.
 
 power :: Integer -> Integer -> Integer
-power n k =
-  if k == 1
-    then n
-    else n * power n (k - 1)
+power n 0 = 1
+power n k = n * power n (k - 1)
 
 ------------------------------------------------------------------------------
 -- Ex 11: ilog3 n should be the number of times you can divide given
@@ -148,11 +143,5 @@ power n k =
 --   ilog3 7 ==> 2
 
 ilog3 :: Integer -> Integer
-ilog3 n = ilog3' n 0
-
-ilog3' :: Integer -> Integer -> Integer
-ilog3' n d =
-  let result = n `div` 3
-   in if result == 0
-        then d + 1
-        else ilog3' result (d + 1)
+ilog3 0 = 0
+ilog3 n = 1 + ilog3 (div n 3)

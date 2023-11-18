@@ -5,8 +5,8 @@
 ## Part 1
 
 |  #  | Lecture                    | Complete |
-| :-: | -------------------------- | -------- |
-|  1  | ...And so It Begins        |          |
+| :-: | -------------------------- | :------: |
+|  1  | ...And so It Begins        |    ✅    |
 |  2  | Either You Die a Hero...   |          |
 |  3  | Catamorphic                |          |
 |  4  | Real Classy                |          |
