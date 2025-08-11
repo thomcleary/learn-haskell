@@ -1,2 +1,1 @@
-# learn-haskell
-🧠 🍆
+# 🧠 🍆 learn-haskell
