@@ -1,0 +1,9 @@
+services:
+  devcontainer:
+    build: .
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/learn-haskell
+      - ./starship.toml:/root/.config/starship.toml
+      - ./config.fish:/root/.config/fish/config.fish
