@@ -37,10 +37,10 @@ ENV PATH="/root/.ghcup/bin:${PATH}"
 RUN apt-get update && \
     apt-get -y install zlib1g-dev
 
-WORKDIR /learn-haskell/haskell-mooc
-COPY haskell-mooc/exercises ./exercises
+WORKDIR /haskell-mooc
+COPY exercises ./exercises
 RUN cd exercises && stack build
 
 
-WORKDIR /learn-haskell
+WORKDIR /haskell-mooc/exercises
 CMD ["fish"]

@@ -4,6 +4,6 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./:/learn-haskell
+      - ./:/haskell-mooc
       - ./starship.toml:/root/.config/starship.toml
       - ./config.fish:/root/.config/fish/config.fish
