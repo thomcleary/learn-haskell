@@ -72,7 +72,11 @@ countValid = length . filter valid
 --   repeated [1,2,1,2,3,3] ==> Just 3
 
 repeated :: (Eq a) => [a] -> Maybe a
-repeated = todo
+repeated [] = Nothing
+repeated [x] = Nothing
+repeated (x : y : rest)
+  | x == y = Just x
+  | otherwise = repeated (y : rest)
 
 ------------------------------------------------------------------------------
 -- Ex 5: A laboratory has been collecting measurements. Some of the
