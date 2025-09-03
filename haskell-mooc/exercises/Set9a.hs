@@ -57,7 +57,10 @@ echo s@(head : tail) = s ++ ", " ++ echo tail
 -- are valid.
 
 countValid :: [String] -> Int
-countValid = todo
+countValid = length . filter valid
+  where
+    valid (_ : _ : third : fourth : fifth : sixth : _) = third == fifth || fourth == sixth
+    valid _ = False
 
 ------------------------------------------------------------------------------
 -- Ex 4: Find the first element that repeats two or more times _in a
