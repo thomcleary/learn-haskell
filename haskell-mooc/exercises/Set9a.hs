@@ -11,6 +11,7 @@
 module Set9a where
 
 import Data.Char
+import Data.Either (rights)
 import Data.List
 import Data.Ord
 import Mooc.Todo
@@ -98,7 +99,9 @@ repeated (x : y : rest)
 --     ==> Left "no data"
 
 sumSuccess :: [Either String Int] -> Either String Int
-sumSuccess = todo
+sumSuccess results = case rights results of
+  [] -> Left "no data"
+  rs -> Right (sum rs)
 
 ------------------------------------------------------------------------------
 -- Ex 6: A combination lock can either be open or closed. The lock
