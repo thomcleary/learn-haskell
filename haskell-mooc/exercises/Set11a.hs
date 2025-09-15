@@ -79,7 +79,13 @@ readWords n = do
 --   ["bananas","garlic","pakchoi"]
 
 readUntil :: (String -> Bool) -> IO [String]
-readUntil f = todo
+readUntil f = do
+  line <- getLine
+  if f line
+    then return []
+    else do
+      rest <- readUntil f
+      return (line : rest)
 
 ------------------------------------------------------------------------------
 -- Ex 6: given n, print the numbers from n to 0, one per line
