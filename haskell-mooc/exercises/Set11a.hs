@@ -97,6 +97,9 @@ countdownPrint n
       putStrLn (show n)
       when (n > 0) (countdownPrint (n - 1))
 
+-- Solution
+-- countdownPrint n = mapM_ print [n,n-1..0]
+
 ------------------------------------------------------------------------------
 -- Ex 7: isums n should read n numbers from the user (one per line) and
 --   1) after each number, print the running sum up to that number
@@ -114,9 +117,9 @@ isums n = go n 0
   where
     go 0 s = return s
     go n s = do
-      i <- readLn :: IO Int
+      i <- readLn
       let sum = i + s
-      putStrLn (show sum)
+      print sum
       go (n - 1) sum
 
 ------------------------------------------------------------------------------
@@ -155,6 +158,11 @@ while cond op = do
     else do
       op
       while cond op
+
+-- Solution
+-- while cond op = whenM cond iteration
+--   where iteration = do op
+--                        while cond op
 
 ------------------------------------------------------------------------------
 -- Ex 10: given a string and an IO operation, print the string, run
