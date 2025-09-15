@@ -148,7 +148,13 @@ ask = do
   return $ line == "Y"
 
 while :: IO Bool -> IO () -> IO ()
-while cond op = todo
+while cond op = do
+  test <- cond
+  if not test
+    then return ()
+    else do
+      op
+      while cond op
 
 ------------------------------------------------------------------------------
 -- Ex 10: given a string and an IO operation, print the string, run
