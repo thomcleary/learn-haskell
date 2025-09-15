@@ -122,7 +122,18 @@ compose op1 op2 c = do
 --   ["module Set11b where","","import Control.Monad"]
 
 hFetchLines :: Handle -> IO [String]
-hFetchLines = todo
+-- hFetchLines handle = do
+--   isEof <- hIsEOF handle
+--   if isEof
+--     then return []
+--     else do
+--       line <- hGetLine handle
+--       rest <- hFetchLines handle
+--       return (line : rest)
+
+hFetchLines handle = do
+  contents <- hGetContents handle
+  return (lines contents)
 
 ------------------------------------------------------------------------------
 -- Ex 6: Given a Handle and a list of line indexes, produce the lines
