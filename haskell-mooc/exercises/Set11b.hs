@@ -146,7 +146,22 @@ hFetchLines handle = do
 -- handle.
 
 hSelectLines :: Handle -> [Int] -> IO [String]
-hSelectLines h nums = todo
+-- hSelectLines h nums = go 1 nums
+--   where
+--     go curr [] = return []
+--     go curr nums@(i : is) = do
+--       isEof <- hIsEOF h
+--       if isEof
+--         then return []
+--         else do
+--           line <- hGetLine h
+--           let take = curr == i
+--           rest <- go (curr + 1) (if take then is else nums)
+--           return (if take then line : rest else rest)
+
+hSelectLines h nums = do
+  lines <- hFetchLines h
+  return [l | (i, l) <- zip [1 ..] lines, elem i nums]
 
 ------------------------------------------------------------------------------
 -- Ex 7: In this exercise we see how a program can be split into a
