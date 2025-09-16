@@ -3,7 +3,6 @@ module Set12 where
 import Data.Foldable
 import Data.Functor
 import Data.List
-import Data.Monoid
 import Mooc.Todo
 
 ------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ instance Functor TwoList where
 --   count 'c' (Just 'c') ==> 1
 
 count :: (Eq a, Foldable f) => a -> f a -> Int
-count = todo
+count element = length . filter (== element) . toList
 
 ------------------------------------------------------------------------------
 -- Ex 7: Return all elements that are in two Foldables, as a list.
