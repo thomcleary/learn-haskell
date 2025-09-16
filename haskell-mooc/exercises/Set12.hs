@@ -151,7 +151,8 @@ data Fun a = Fun (Int -> a)
 runFun :: Fun a -> Int -> a
 runFun (Fun f) x = f x
 
-instance Functor Fun
+instance Functor Fun where
+  fmap f fun = Fun (f . runFun fun)
 
 ------------------------------------------------------------------------------
 -- Ex 11: (Tricky!) You'll find the binary tree type from Set 5b
