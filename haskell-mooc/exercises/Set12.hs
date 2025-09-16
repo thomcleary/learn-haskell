@@ -52,7 +52,9 @@ data Result a = MkResult a | NoResult | Failure String
   deriving (Show)
 
 instance Functor Result where
-  fmap f result = todo
+  fmap f (MkResult result) = MkResult (f result)
+  fmap _ (Failure reason) = Failure reason
+  fmap _ _ = NoResult
 
 ------------------------------------------------------------------------------
 -- Ex 4: Here's a reimplementation of the Haskell list type. You might
