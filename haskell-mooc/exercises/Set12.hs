@@ -125,7 +125,8 @@ inBoth f g = foldr intersection [] f
 --   length (LNode 1 (LNode 2 (LNode 3 Empty))) ==> 3
 
 instance Foldable List where
-  foldr = todo
+  foldr f acc Empty = acc
+  foldr f acc (LNode value rest) = f value (foldr f acc rest)
 
 ------------------------------------------------------------------------------
 -- Ex 9: Implement the instance Foldable TwoList.
