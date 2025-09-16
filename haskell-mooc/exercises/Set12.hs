@@ -54,7 +54,7 @@ data Result a = MkResult a | NoResult | Failure String
 instance Functor Result where
   fmap f (MkResult result) = MkResult (f result)
   fmap _ (Failure reason) = Failure reason
-  fmap _ _ = NoResult
+  fmap _ NoResult = NoResult
 
 ------------------------------------------------------------------------------
 -- Ex 4: Here's a reimplementation of the Haskell list type. You might
@@ -67,7 +67,9 @@ instance Functor Result where
 data List a = Empty | LNode a (List a)
   deriving (Show)
 
-instance Functor List
+instance Functor List where
+  fmap _ Empty = Empty
+  fmap f (LNode value rest) = LNode (f value) (fmap f rest)
 
 ------------------------------------------------------------------------------
 -- Ex 5: Here's another list type. This time every node contains two
