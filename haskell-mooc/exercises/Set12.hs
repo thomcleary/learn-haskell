@@ -114,6 +114,10 @@ inBoth f g = foldr intersection [] f
       | elem x g = x : set
       | otherwise = set
 
+-- Solution
+-- via lists
+-- inBoth' f g = intersect (toList f) (toList g)
+
 ------------------------------------------------------------------------------
 -- Ex 8: Implement the instance Foldable List.
 --
@@ -153,6 +157,29 @@ runFun (Fun f) x = f x
 
 instance Functor Fun where
   fmap f fun = Fun (f . runFun fun)
+
+-- Solution
+--
+-- instance Functor Fun where
+-- An explanation in case the definition below puzzles you
+--
+-- In this case fmap :: (a->b) -> Fun a -> Fun b
+-- so the definition should looklike this: fmap f (Fun g) = Fun h
+-- where f :: a->b, g :: Int->a, h :: Int->b
+--
+-- Let's define h. h is a function that takes an int, so
+--   h i = ....
+-- h returns something of type b, and the only way to produce
+-- something of type b is the function f, so
+--   h i = f (...)
+-- f takes an a, and the only way we can get an a is g, so
+--   h i = f (g (...))
+-- g takes an int, and i is an int
+--   h i = f (g i)
+-- we can rewrite this as
+--   h = f . g
+-- Thus:
+--   fmap f (Fun g) = Fun (f.g)
 
 ------------------------------------------------------------------------------
 -- Ex 11: (Tricky!) You'll find the binary tree type from Set 5b
