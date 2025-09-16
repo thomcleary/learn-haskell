@@ -108,7 +108,11 @@ count element = length . filter (== element) . toList
 --   inBoth Nothing [3]    ==> []
 
 inBoth :: (Foldable f, Foldable g, Eq a) => f a -> g a -> [a]
-inBoth = todo
+inBoth f g = foldr intersection [] f
+  where
+    intersection x set
+      | elem x g = x : set
+      | otherwise = set
 
 ------------------------------------------------------------------------------
 -- Ex 8: Implement the instance Foldable List.
