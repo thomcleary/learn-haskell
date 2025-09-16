@@ -126,7 +126,7 @@ inBoth f g = foldr intersection [] f
 
 instance Foldable List where
   foldr f acc Empty = acc
-  foldr f acc (LNode value rest) = f value (foldr f acc rest)
+  foldr f acc (LNode value rest) = f value $ foldr f acc rest
 
 ------------------------------------------------------------------------------
 -- Ex 9: Implement the instance Foldable TwoList.
@@ -136,7 +136,8 @@ instance Foldable List where
 --   length (TwoNode 0 1 (TwoNode 2 3 TwoEmpty)) ==> 4
 
 instance Foldable TwoList where
-  foldr = todo
+  foldr f acc TwoEmpty = acc
+  foldr f acc (TwoNode a b rest) = f a $ f b $ foldr f acc rest
 
 ------------------------------------------------------------------------------
 -- Ex 10: (Tricky!) Fun a is a type that wraps a function Int -> a.
